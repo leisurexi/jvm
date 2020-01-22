@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="eeb83b2d-b776-44bb-8e68-870ae7151307" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1WgR2tHuZ22OwjF7dr1vhNyeZbF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+  </component>
+  <component name="RunManager" selected="Application.MinorGC">
+    <configuration name="FinalizeEscapeGC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.leisurexi.jvm.gc.FinalizeEscapeGC" />
+      <module name="jvm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.leisurexi.jvm.gc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MinorGC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.leisurexi.jvm.gc.MinorGC" />
+      <module name="jvm" />
+      <option name="VM_PARAMETERS" value="-verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:MaxTenuringThreshold=1 -XX:+PrintTenuringDistribution -XX:PretenureSizeThreshold=3142728 -XX:SurvivorRatio=8 -XX:+UseSerialGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+HeapDumpOnOutOfMemoryError" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.leisurexi.jvm.gc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReferenceCountingGC" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.leisurexi.jvm.gc.ReferenceCountingGC" />
+      <module name="jvm" />
+      <option name="VM_PARAMETERS" value="-verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+HeapDumpOnOutOfMemoryError" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.leisurexi.jvm.gc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MinorGC.testAllocation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jvm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.leisurexi.jvm.gc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.leisurexi.jvm.gc" />
+      <option name="MAIN_CLASS_NAME" value="com.leisurexi.jvm.gc.MinorGC" />
+      <option name="METHOD_NAME" value="testAllocation" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea -verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:+UseSerialGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+HeapDumpOnOutOfMemoryError" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MinorGC.testPretenureSizeThreshold" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jvm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.leisurexi.jvm.gc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.leisurexi.jvm.gc" />
+      <option name="MAIN_CLASS_NAME" value="com.leisurexi.jvm.gc.MinorGC" />
+      <option name="METHOD_NAME" value="testPretenureSizeThreshold" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea -verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:+UseSerialGC -XX:PretenureSizeThreshold=3142728 -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+HeapDumpOnOutOfMemoryError" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ReferenceCountingGC" />
+      <item itemvalue="Application.FinalizeEscapeGC" />
+      <item itemvalue="Application.MinorGC" />
+      <item itemvalue="JUnit.MinorGC.testAllocation" />
+      <item itemvalue="JUnit.MinorGC.testPretenureSizeThreshold" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MinorGC" />
+        <item itemvalue="JUnit.MinorGC.testPretenureSizeThreshold" />
+        <item itemvalue="JUnit.MinorGC.testAllocation" />
+        <item itemvalue="Application.ReferenceCountingGC" />
+        <item itemvalue="Application.FinalizeEscapeGC" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="UTF-8" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Raytine\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eeb83b2d-b776-44bb-8e68-870ae7151307" name="Default Changelist" comment="" />
+      <created>1579569047921</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579569047921</updated>
+      <workItem from="1579569050618" duration="16798000" />
+      <workItem from="1579652471033" duration="11541000" />
+      <workItem from="1579700936628" duration="219000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579683449901">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1579683449901" />
+    <state x="1085" y="410" key="#com.intellij.ide.util.MemberChooser" timestamp="1579586183959">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1085" y="410" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1579586183959" />
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1579591153482">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1579591153482" />
+    <state width="2517" height="506" key="GridCell.Tab.0.bottom" timestamp="1579683452518">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="506" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1579683452518" />
+    <state width="2517" height="506" key="GridCell.Tab.0.center" timestamp="1579683452518">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="506" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1579683452518" />
+    <state width="2517" height="506" key="GridCell.Tab.0.left" timestamp="1579683452518">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="506" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1579683452518" />
+    <state width="2517" height="506" key="GridCell.Tab.0.right" timestamp="1579683452518">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="506" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1579683452518" />
+    <state x="781" y="342" key="SettingsEditor" timestamp="1579574327040">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="781" y="342" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1579574327040" />
+    <state x="519" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1579700936841">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="519" y="369" key="com.intellij.ide.util.TipDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1579700936841" />
+    <state x="654" y="402" key="new project wizard" timestamp="1579591209422">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="654" y="402" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1579591209422" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1579679790530">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1579679790530" />
+  </component>
+</project>
