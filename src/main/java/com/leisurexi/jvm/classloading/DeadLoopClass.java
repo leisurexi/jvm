@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DeadLoopClass {
 
     static {
+        //如果不加上这个 if 判断，编译器将提示 "Initializer does not complete normally" 并拒绝编译
         if (true) {
             log.info("{} init DeadLoopClass", Thread.currentThread());
             while (true) {
