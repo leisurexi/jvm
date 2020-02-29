@@ -5,6 +5,7 @@ import com.leisurexi.jvm.util.MemoryUtil;
 /**
  * @author: leisurexi
  * @description: jvm垃圾回收跟搜索算法回收示例，objA 和 objB 循环应用，但还是可以观察 GC 日志发现，对象被回收了
+ * VM Args: -XX:+PrintGCDetails
  * @date: 2020/1/21 11:16
  * @since: JDK1.8
  */

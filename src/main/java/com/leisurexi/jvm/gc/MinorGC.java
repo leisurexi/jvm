@@ -11,7 +11,7 @@ import com.leisurexi.jvm.util.MemoryUtil;
 public class MinorGC {
 
     /**
-     * VM参数：-verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:SurvivorRatio=8 -XX:+UseSerialGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+HeapDumpOnOutOfMemoryError
+     * VM参数：-verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:SurvivorRatio=8 -XX:+UseSerialGC -XX:+PrintGCDetails
      * <p>
      * 大多数情况下，对象在新生代 Eden 区分配。当 Eden 区没有足够的空间进行分配时，虚拟机将发起一次 Minor GC。
      * 下面示例中尝试分配3个2MB大小和1个4MB大小的对象，在运行时通过 -Xms20M -Xmx20M -Xmn10M 这3个参数限制
@@ -35,7 +35,7 @@ public class MinorGC {
     }
 
     /**
-     * VM参数：-verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:SurvivorRatio=8 -XX:+UseSerialGC -XX:PretenureSizeThreshold=3142728 -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+HeapDumpOnOutOfMemoryError
+     * VM参数：-verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:SurvivorRatio=8 -XX:+UseSerialGC -XX:PretenureSizeThreshold=3142728 -XX:+PrintGCDetails
      * <p>
      * 大对象直接进入老年代，所谓大对象就是指，需要大量连续内存空间的Java对象，最典型的大对象就是那种很长的字符串
      * 及数组 (例如下面代码中的 byte 数组)。大对象对于虚拟机的内存分配来说就是一个坏消息，经常出现大对象容易导致
@@ -56,7 +56,13 @@ public class MinorGC {
     }
 
     /**
-     * VM参数：-verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:MaxTenuringThreshold=1 -XX:+PrintTenuringDistribution -XX:PretenureSizeThreshold=3142728 -XX:SurvivorRatio=8 -XX:+UseSerialGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+HeapDumpOnOutOfMemoryError
+     * VM参数：-verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:SurvivorRatio=8 -XX:+UseSerialGC -XX:+PrintGCDetails -XX:MaxTenuringThreshold=1 -XX:+PrintTenuringDistribution
+     * <p>
+     * 长期存活的对象将进入老年代。虚拟机给每个对象定义了一个对象年龄(Age)计数器，存储在对象头中。对象通常在
+     * Eden区里诞生，如果经过第一次Minor GC后仍然存活，并且能够被Survivor容纳的话，该对象会被移动到Survivor
+     * 空间中，并且将其对象年龄设为1岁。对象在Survivor区中没熬过一次Minor GC，年龄就增加1岁，当它的年龄增加到
+     * 一定程度(默认为15)，就会被晋升到老年代中。
+     * </p>
      */
     public static void testTenuringThreshold() {
         byte[] allocation1, allocation2, allocation3;
@@ -68,11 +74,56 @@ public class MinorGC {
         allocation3 = new byte[4 * MemoryUtil._1MB];
     }
 
+    /**
+     * VM参数: -verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:SurvivorRatio=8 -XX:+UseSerialGC -XX:+PrintGCDetails -XX:MaxTenuringThreshold=15 -XX:+PrintTenuringDistribution
+     * <p>
+     * 动态对象年龄判定。为了能够适应不同程序的内存状况，HotSpot虚拟机并不是永远要求对象的年龄必须达到
+     * -XX:MaxTenuringThreshold 才能晋升老年代，如果在Survivor空间中相同年龄所有对象大小的总和大
+     * 于Survivor空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无须等到 -XX:MaxTenuringThreshold
+     * 中要求的年龄
+     * </p>
+     */
+    public static void testTenuringThreshold2() {
+        byte[] allocation1, allocation2, allocation3, allocation4;
+        //allocation1 + allocation2 大于Survivor空间一半
+        allocation1 = new byte[MemoryUtil._1MB / 4];
+        allocation2 = new byte[MemoryUtil._1MB / 4];
+        allocation3 = new byte[4 * MemoryUtil._1MB];
+        allocation4 = new byte[4 * MemoryUtil._1MB];
+        allocation4 = null;
+        allocation4 = new byte[4 * MemoryUtil._1MB];
+    }
+
+    /**
+     * VM参数: -verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:SurvivorRatio=8 -XX:+UseSerialGC -XX:+PrintGCDetails
+     * <p>
+     * 只要老年代的连续空间大于新生代对象总大小或者历次晋升的平均大小，就会进行Minor GC，否则将进行Full GC。
+     * </p>
+     */
+    public static void testHandlerPromotion() {
+        byte[] allocation1, allocation2, allocation3, allocation4, allocation5,
+                allocation6, allocation7;
+        allocation1 = new byte[2 * MemoryUtil._1MB];
+        allocation2 = new byte[2 * MemoryUtil._1MB];
+        allocation3 = new byte[2 * MemoryUtil._1MB];
+        allocation1 = null;
+        //在分配allocation4时触发Minor GC，因为Survivor放不下allocation2 + allocation3，
+        //所以通过分配担保直接进入老年代
+        allocation4 = new byte[2 * MemoryUtil._1MB];
+        allocation5 = new byte[2 * MemoryUtil._1MB];
+        allocation6 = new byte[2 * MemoryUtil._1MB];
+        allocation4 = null;
+        allocation5 = null;
+        allocation6 = null;
+        allocation7 = new byte[2 * MemoryUtil._1MB];
+    }
+
     public static void main(String[] args) {
 //        testAllocation();
 //        testPretenureSizeThreshold();
-        testTenuringThreshold();
+//        testTenuringThreshold();
+//        testTenuringThreshold2();
+        testHandlerPromotion();
     }
-
 
 }
